@@ -17,22 +17,26 @@ public class ReadCarInputFile {
   public static List<String> getCarRegDetails(String carRegNumber)
       throws IOException, CsvValidationException {
     List<List<String>> records = new ArrayList<List<String>>();
-    List<String> carRegDetails = new ArrayList<>();
-    try (CSVReader csvReader =
-        new CSVReader(new FileReader("src\\test\\resources\\data\\car_output.csv")); ) {
+    List<String> carRegDetails = new ArrayList<String>();
+    try {
+      CSVReader csvReader =
+              new CSVReader(new FileReader("src\\test\\resources\\data\\car_output.csv"));
       String[] values = null;
       while ((values = csvReader.readNext()) != null) {
         records.add(Arrays.asList(values));
       }
-    }
-    for (List<String> record : records) {
 
-      if (record
-          .get(0)
-          .replaceAll("\\s+", "")
-          .equalsIgnoreCase(carRegNumber.replaceAll("\\s+", ""))) {
-        carRegDetails = record;
+      for (List<String> record : records) {
+
+        if (record
+                .get(0)
+                .replaceAll("\\s+", "")
+                .equalsIgnoreCase(carRegNumber.replaceAll("\\s+", ""))) {
+          carRegDetails = record;
+        }
       }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
     return carRegDetails;
   }
@@ -40,10 +44,11 @@ public class ReadCarInputFile {
   public static List<String> getMatchingCarReg() throws IOException {
     Pattern regPattern = Pattern.compile("\\w{2}\\d{2}\\s?\\w{3}");
 
-    List<String> matchingPatterns = new ArrayList<>();
+    List<String> matchingPatterns = new ArrayList<String>();
 
-    try (BufferedReader br =
-        new BufferedReader(new FileReader("src\\test\\resources\\data\\car_input.txt"))) {
+    try {
+    BufferedReader br =
+        new BufferedReader(new FileReader("src\\test\\resources\\data\\car_input.txt"));
       for (String line; (line = br.readLine()) != null; ) {
         Matcher match = regPattern.matcher(line);
         while (match.find()) {
@@ -52,6 +57,8 @@ public class ReadCarInputFile {
           matchingPatterns.add(line.substring(start, end));
         }
       }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
     return matchingPatterns;
   }

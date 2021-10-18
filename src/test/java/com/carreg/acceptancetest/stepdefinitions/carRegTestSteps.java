@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 public class carRegTestSteps implements Config {
 
   private static final Logger LOG = Logger.getLogger(carRegTestSteps.class.getName());
-  List<String> carRegDetails = new ArrayList<>();
+  List<String> carRegDetails = new ArrayList<String>();
   private CarRegPage carRegPage;
 
   @Given("^user launches car tax check site$")
