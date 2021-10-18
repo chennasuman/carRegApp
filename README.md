@@ -16,8 +16,6 @@ Please run from Project Root Directory
         
     2. mvn clean test -Dbrowser="Firefox"
  
- ### Note: This framework tested On Win10 only. However Test very likely to work in other OS Combinations too eg: MAC
-  
-# TO-DO 
-
-   Enhance Reporting by adding extent reports
+ # Note
+ This has been framework tested On Win10 only. However Test very likely to work in other OS Combinations too eg: MAC
+ 
